@@ -87,8 +87,9 @@ app.delete('/books/:id',(req,res) => {
 
   const bookIndex = library.findIndex((b) => b.book_id === req.params.id);
 
-  if(bookIndex){
-    library.pop(bookIndex)
+  if(bookIndex !== -1){
+
+    library.splice(bookIndex, 1)
     res.status(200).json({message:"Book Deleted"})
   }else{
     res.status(401).json({message:"Book not found"})
